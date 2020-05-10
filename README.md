@@ -1,6 +1,6 @@
 # ansible
 Ansible education repo.
-<i>All connections using ssh-connection via ssh-key authentication</i>
+<br><i>All connections using ssh-connection via ssh-key authentication</i>
 <ul>
   <li>pub/          # Directory with web-content</li>
   <li>group_vars/   # Directory which describe remote-servers</li>
