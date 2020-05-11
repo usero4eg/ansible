@@ -1,0 +1,10 @@
+---
+# handlers file for deploy_apache
+#
+- name: Restart CentOS web-server on changes in html directory
+  service: name=httpd state=restarted
+  when: ansible_os_family == "RedHat"
+
+- name: Restart Ubuntu web-server on changes in html directory
+  service: name=apache2 state=restarted
+  when: ansible_os_family == "Debian"
