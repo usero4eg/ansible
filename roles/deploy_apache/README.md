@@ -1,3 +1,5 @@
+ansible-galaxy init deploy_apache
+
 Role Name
 =========
 
