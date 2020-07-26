@@ -7,12 +7,12 @@ instance-ubuntu
 instance-ubuntu-int
 
 [instance-centos]
-35.228.54.53
+
 [instance-centos-int]
-10.166.0.3
+
 
 [instance-ubuntu]
-35.228.191.127
+
 [instance-ubuntu-int]
-10.166.0.2
+
 
