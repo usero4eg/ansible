@@ -15,6 +15,7 @@
         - kubernetes-cni
 
   - name: Ensure br_netfilter is enabled
+    become: True
     modprobe:
       name: br_netfilter
       state: present
