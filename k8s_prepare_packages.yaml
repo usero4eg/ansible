@@ -14,6 +14,11 @@
         - kubectl
         - kubernetes-cni
 
+  - name: Ensure br_netfilter is enabled
+    modprobe:
+      name: br_netfilter
+      state: present
+
   - name: Update kernel settings
     become: True
     sysctl:
@@ -36,7 +41,7 @@
       path: /etc/fstab
       regexp: "^UUID={{ blkid_out.stdout }}"
       state: absent
-      
+
   - name: Enable & start docker & kubelet services
     become: True
     systemd:
