@@ -1,0 +1,21 @@
+---
+- hosts: k8s
+  vars_files: group_vars/main.yml
+  tasks:
+  - name: Switch Selinux to permissive mode
+    become: True
+    selinux:
+      policy: targeted
+      state: permissive
+
+  - name: Disable Selinux
+    become: True
+    selinux:
+      state: disabled
+
+  - name: Disable firewalld systemd unit
+    become: True
+    systemd:
+      name: firewalld
+      state: stopped
+      enabled: False
