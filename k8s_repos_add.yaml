@@ -1,0 +1,20 @@
+---
+- hosts: k8s
+  vars_files: group_vars/main.yml
+  tasks:
+  - name: Add repository file
+    become: True
+    copy:
+      src: files/kubernetes.repo
+      dest: /etc/yum.repos.d/kubernetes.repo
+      owner: root
+      group: root
+      mode: '0644'
+  - name: Update repository
+    become: True
+    yum:
+      security: yes
+      state: latest
+    check_mode: yes
+    register: yum_output
+
