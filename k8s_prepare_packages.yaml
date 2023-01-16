@@ -13,3 +13,37 @@
         - kubeadm
         - kubectl
         - kubernetes-cni
+
+  - name: Update kernel settings
+    become: True
+    sysctl:
+      name: net.brigde.brigde-nf-call-iptables
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
+
+  - name: Disable swap file
+    command: swapoff -a
+
+  - name: Show UUID of swap
+    become: True
+    shell: blkid -s UUID -o value {{ ebs_swap }}
+    register: blkid_out
+
+  - name: Remove swap file from fstab
+    lineinfile:
+      path: /etc/fstab
+      regexp: "^UUID={{ blkid_out.stdout }}"
+      state: absent
+      
+  - name: Enable & start docker & kubelet services
+    become: True
+    systemd:
+      name: "{{ k8s_services }}"
+    vars:
+      services:
+        - docker
+        - kubelet
+      state: enabled
+    
