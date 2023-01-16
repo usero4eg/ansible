@@ -1,0 +1,15 @@
+---
+- hosts: k8s
+  vars_files: group_vars/main.yml
+  tasks:
+  - name: Installing k8s dependency packages list
+    become: True
+    yum:
+      name: "{{ packages }}"
+    vars:
+      packages:
+        - docker
+        - kubelet
+        - kubeadm
+        - kubectl
+        - kubernetes-cni
