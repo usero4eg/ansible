@@ -1,7 +1,0 @@
----
-ansible_connection:         ssh
-ansible_port:               22
-ansible_user:               usero4eg
-ansible_ssh_private_key:    /home/usero4eg/.ssh/id_rsa.github
-ansible_python_interpreter: /usr/bin/python2
-ovner:                      "usero4eg centos internal instance"
